@@ -5,7 +5,12 @@ import io.ktor.routing.*
 import mariogmarq.applications.supplies.backend.controllers.ProviderGetController
 
 fun Application.configureRouting() {
+    // Dependencies
+    val providerGet = ProviderGetController()
+
     routing {
-        get("/provider/{id}", ProviderGetController)
+        get("/provider/{id}") {
+            providerGet.run(call)
+        }
     }
 }
